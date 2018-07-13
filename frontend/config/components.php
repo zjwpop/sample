@@ -11,15 +11,6 @@ $config = [
 			'name' => '_csrf-frontend',
 		],
 	],
-	// 'user' => [
-		// 'identityClass' => '',
-		// 'loginUrl' => ['/login'],
-		// 'enableAutoLogin' => true,
-		// 'identityCookie' => [
-			// 'name' => '_identity-frontend',
-			// 'httpOnly' => true,
-		// ],
-	// ],
 	'user' => [
 		'identityClass' => 'common\models\table\User',
 		'enableAutoLogin' => true,
