@@ -1,0 +1,34 @@
+{
+    "name": "hubeiwei/yii2-tools",
+    "description": "",
+    "keywords": [
+        "yii2",
+        "extension",
+        "widget",
+        "tools"
+    ],
+    "homepage": "https://github.com/hubeiwei/yii2-tools",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hubeiwei",
+            "email": "hubeiwei@hotmail.com",
+            "homepage": "http://hubeiwei.github.io"
+        }
+    ],
+    "require": {
+        "kartik-v/yii2-date-range": "*",
+        "kartik-v/yii2-export": "*",
+        "kartik-v/yii2-grid": "*",
+        "kartik-v/yii2-widget-alert": "*",
+        "kartik-v/yii2-widget-growl": "*",
+        "kartik-v/yii2-widget-select2": "*",
+        "liyunfang/yii2-widget-linkpager": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "hubeiwei\\yii2tools\\": ""
+        }
+    }
+}
