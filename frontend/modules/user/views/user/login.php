@@ -10,16 +10,13 @@ use yii\widgets\ActiveForm;
  * @var $model admin\models\form\LoginForm
  */
 
-$this->title = '管理员登录';
+$this->title = '用户登录';
 
 BootstrapAsset::register($this);
 ?>
-<div class="site-login row">
-    <div class='col-md-6 col-md-offset-3'>
-    <!--
-	<h1><?= Html::encode($this->title) ?></h1>
-	-->
-
+<div class="container">
+<div class="site-login row" style="padding-top: 120px;">
+    <div class='col-md-4 col-md-offset-4'>
 	<?php $form = ActiveForm::begin([
 		'fieldConfig' => [
 			'options' => [
@@ -59,5 +56,6 @@ BootstrapAsset::register($this);
 
 	<?php ActiveForm::end(); ?>
 	</div>
-	<div class='col-md-3'>&nbsp;</div>
+	<div class='col-md-4'>&nbsp;</div>
+</div>
 </div>

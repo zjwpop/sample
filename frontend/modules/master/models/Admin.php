@@ -7,7 +7,9 @@ use yii\data\ActiveDataProvider;
 
 class Admin extends User {
 	public function search($params) {
-		$query = self::find()->where(['mst' => 1]);
+		$query = self::find()->where(['mst' => 1])
+			->andFilterWhere(['>','id',1])
+			->andWhere(['<>','username','']);
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
 		]);
