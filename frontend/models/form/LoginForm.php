@@ -69,7 +69,7 @@ class LoginForm extends Model {
 			$this->_user = User::findOne([
 				'username' => $this->username,
 				'status' => User::STATUS_ENABLE,
-				'role' => 1,
+				'mst' => 1,
 			]);
 		}
 		return $this->_user;
