@@ -66,7 +66,9 @@ class AdminController extends BaseController {
             ->orderBy(['id' => SORT_ASC])
             ->one();
         $request = Yii::$app->request;
+        $post = $request->post($model->formName(), []);
         if ($request->isPost) {
+            //return json_encode($post);
             if(empty($post['username']) || empty($post['password'])){
                 Message::setErrorMsg('用户名，密码不能为空');
                 return $this->render('create', [
@@ -74,14 +76,12 @@ class AdminController extends BaseController {
                 ]);
             }
             $check=Admin::findOne(['username'=>$post['username']]);
-            if($ckeck){
+            if($check){
                 Message::setErrorMsg('用户名不能重复');
                 return $this->render('create', [
                     'model' => $model,
                         ]);
              }
-
-            $post = $request->post($model->formName(), []);
             if (empty($post['password'])) {
                 unset($post['password']);
             }
@@ -94,6 +94,7 @@ class AdminController extends BaseController {
                 return $this->redirect(['index']);
             } else {
                 Message::setErrorMsg('添加失败');
+                return json_encode($model->getErrors());
             }
         }
 
