@@ -24,7 +24,7 @@ $config = [
     'components' => $components,
     'modules' => $modules,
     'defaultRoute' => 'index',
-	'layout' => '@frontend/views/layouts/master',
+	'layout' => '@frontend/views/layouts/main',
 ];
 
 if (YII_ENV_DEV) {

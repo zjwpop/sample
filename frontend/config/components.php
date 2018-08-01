@@ -1,6 +1,9 @@
 <?php
 
 $config = [
+	'errorHandler' => [
+		'errorAction' => 'site/error',
+	],
 	'request' => [
 		'class' => 'yii\web\Request',
 		'csrfParam' => '_csrf-frontend',
