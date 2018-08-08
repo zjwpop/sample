@@ -1,1 +1,1 @@
-#sample yii
+#sample
