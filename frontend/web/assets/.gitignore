@@ -1,4 +1,3 @@
 # config dir 
-/config
-
-/runtime
+*
+!.gitignore
