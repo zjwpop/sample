@@ -22,9 +22,9 @@ $config['modules']['gii'] = [
 		'crud' => [
 			'class' => 'yii\gii\generators\crud\Generator',
 			'modelClass' => 'common\models\table\(Model名)',
-			'controllerClass' => 'admin\controllers\(控制器名)Controller',
-			'viewPath' => '@admin/views/(路由)',
-			'baseControllerClass' => 'admin\controllers\base\AuthController',
+			'controllerClass' => 'frontend\modues\master\controllers\(控制器名)Controller',
+			'viewPath' => '@frontend/modues/master/views/(路由)',
+			'baseControllerClass' => 'frontend\modues\master\controllers\base\AuthController',
 			'searchModelClass' => 'common\models\search\(Model名)Search',
 		],
 	],
