@@ -16,4 +16,3 @@ Yii::$container->set('yii\widgets\ActiveField', [
         'class' => ['form-control', 'input-sm'],
     ],
 ]);
-
