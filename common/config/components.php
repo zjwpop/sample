@@ -14,6 +14,7 @@ $config = [
 		// 'class' => 'yii\caching\FileCache',
 		'class' => 'yii\redis\Cache',
 		'redis' => 'redis',
+		'keyPrefix' => 'yii_',
 	],
 	'log' => [
 		'traceLevel' => YII_DEBUG ? 3 : 0,
