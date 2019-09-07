@@ -6,7 +6,7 @@ $config = [
 		'showScriptName' => false,
 	],
 	'formatter' => [
-		// 'nullDisplay' => '',
+		'nullDisplay' => '-',
 		'dateFormat' => 'php:Y-m-d',
 		'datetimeFormat' => 'php:Y-m-d H:i:s',
 	],
