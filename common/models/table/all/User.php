@@ -111,7 +111,7 @@ class User extends AllUserBase implements IdentityInterface
     }
 
     //这个就是我们进行yii\filters\auth\QueryParamAuth调用认证的函数，下面会说到。
-    public function loginByAccessToken($accessToken, $type) {
+    public function loginByAccessToken($token, $type) {
         return static::findIdentityByAccessToken($token, $type);
     }
 
