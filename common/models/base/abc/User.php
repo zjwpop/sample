@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\base;
+namespace common\models\base\abc;
 
 use Yii;
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "abc_user".
  *
  * @property int $id
  * @property string $username
@@ -23,14 +23,14 @@ use Yii;
  * @property int $last_login_time
  * @property int $create_time
  */
-class AllMasterBase extends \common\extensions\ActiveRecord
+class User extends \common\extensions\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'all_master';
+        return 'abc_user';
     }
 
     /**
