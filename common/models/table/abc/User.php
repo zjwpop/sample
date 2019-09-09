@@ -1,14 +1,14 @@
 <?php
-namespace common\models\table\all;
+namespace common\models\table\abc;
 
 use Yii;
-use common\models\base\AllUserBase;
+use common\models\base\abc\UserBase;
 use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
 use yii\behaviors\TimestampBehavior;
 use common\validator\MobileValidator;
 
-class User extends AllUserBase implements IdentityInterface
+class User extends UserBase implements IdentityInterface
 {
 	const STATUS_ENABLE = 1;
 	const STATUS_DISABLE = 0;
