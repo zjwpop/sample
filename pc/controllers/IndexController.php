@@ -1,12 +1,9 @@
 <?php
 namespace pc\controllers;
 
-use yii\web\Controller;
+use pc\controllers\base\BaseController;
 
-/**
- * Index controller
- */
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 	public function actionIndex(){
 		return $this->render('index');
