@@ -1,8 +1,8 @@
 <?php
 
 $config = [
-	'login' => 'user/login',
-	'logout' => 'user/logout',
+	// 'login' => '/user/login',
+	// 'logout' => '/user/logout',
 
 	'//<_m>.mst.sample.cc' => '<_m>/index',
 	[

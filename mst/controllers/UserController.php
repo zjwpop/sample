@@ -48,8 +48,7 @@ class UserController extends Controller {
 				$token = Yii::$app->user->identity->token;
 				$pid = Yii::$app->user->identity->partner_id;
 				$prefix = Partner::find()->select(['prefix'])->where(['id'=>$pid])->scalar();
-				//exit("//{$prefix}.mst.sample.cc/user/auth?abt_token={$token}");
-				return $this->redirect("//{$prefix}.mst.sample.cc/user/auth?abt_token={$token}");
+				return $this->redirect("//{$prefix}.mst.sample.cc/auth/login?abt_token={$token}");
 			} else {
 				Message::setErrorMsg('登录失败');
 			}
@@ -62,6 +61,6 @@ class UserController extends Controller {
 	public function actionLogout() {
 		Yii::$app->user->logout();
 		Message::setMessage('已登出');
-		return $this->redirect(['user/login']);
+		return $this->redirect(['/user/login']);
 	}
 }

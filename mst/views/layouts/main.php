@@ -31,10 +31,10 @@ use yii\widgets\Breadcrumbs;
         'items' => [
             ['label' => '主页', 'url' => ['/index/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => '登录', 'url' => ['/login']]
+                ['label' => '登录', 'url' => ['/user/login']]
             ) : (
                 '<li>'. Html::a(Yii::$app->user->identity->nick,['mine']) .'</li>'
-                .'<li>'.Html::a('退出',['/logout']) . '</li>'
+                .'<li>'.Html::a('退出',['/user/logout']) . '</li>'
             )
         ],
     ]);
