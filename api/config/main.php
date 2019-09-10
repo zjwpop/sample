@@ -15,7 +15,7 @@ $components = array_merge(
 $modules = require(__DIR__ . '/modules.php');
 
 $config = [
-    'id' => 'mst',
+    'id' => 'api',
     'name' => '****公司',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -24,19 +24,7 @@ $config = [
     'components' => $components,
     'modules' => $modules,
     'defaultRoute' => 'index',
-	'layout' => '@mst/views/layouts/main',
-    'as access' => [
-        'class' => 'yii\filters\AccessControl',
-        'only' => [
-            'gii/*',
-        ],
-        'rules' => [
-            [
-                'allow' => true,
-                'roles' => ['@'],
-            ],
-        ],
-    ],
+	'layout' => '@api/views/layouts/main',
 ];
 
 if (YII_ENV_DEV) {

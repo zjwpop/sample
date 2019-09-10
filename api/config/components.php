@@ -6,45 +6,26 @@ $config = [
 	],
 	'request' => [
 		'class' => 'yii\web\Request',
-		'csrfParam' => '_csrf-mst',
+		'csrfParam' => '_csrf-api',
 		'csrfCookie' => [
-			'name' => '_csrf-mst',
+			'name' => '_csrf-api',
 		],
 	],
 	'user' => [
-		'identityClass' => 'common\models\table\all\User',
+		'identityClass' => 'common\models\table\abc\User',
 		'enableAutoLogin' => true,
-		'identityCookie' => ['name' => '_identity-mst', 'httpOnly' =>false],
-		'loginUrl' => '/user/login',
+		'identityCookie' => ['name' => '_identity-api', 'httpOnly' =>false],
+		// 'loginUrl' => '/user/login',
 	],
 	'session' => [
 		'class' => 'yii\web\Session',
 		// this is the name of the session cookie used for login on the backend
-		'name' => 'advanced-mst',
+		'name' => 'advanced-api',
 	],
 	'urlManager' => [
 		'enablePrettyUrl' => true,
 		'showScriptName' => false,
 		'rules' => require __DIR__ . '/route.php',
-	],
-	'authManager' => [
-		'class' => 'yii\rbac\DbManager',
-	],
-	'assetManager' => [
-		'bundles' => [
-			'yii\web\JqueryAsset' => [
-				'sourcePath' => null,
-				'basePath' => '@webroot',
-				'baseUrl' => '@web',
-				'js' => ['js/jquery/2.2.4/jquery.min.js'],
-			],
-			'yii\bootstrap\BootstrapAsset' => [
-				'sourcePath' => null,
-				'basePath' => '@webroot',
-				'baseUrl' => '@web',
-				'css' => ['css/bootstrap.min.css'],
-			],
-		]
 	],
 ];
 
