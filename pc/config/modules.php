@@ -1,17 +1,17 @@
 <?php
 
 $config = [
-	'master' => [
-		'class' => 'pc\modules\master\Module',
-		'layout' => '@pc/views/layouts/master',
-	],
 	'api' => [
 		'class' => 'pc\modules\api\Module',
 		'layout' => '@pc/views/layouts/api',
 	],
-	'my' => [
-		'class' => 'pc\modules\my\Module',
-		'layout' => '@pc/views/layouts/my',
+	'member' => [
+		'class' => 'pc\modules\member\Module',
+		'layout' => '@pc/views/layouts/member',
+	],
+	'partner' => [
+		'class' => 'pc\modules\partner\Module',
+		'layout' => '@pc/views/layouts/partner',
 	],
 	'gridview' => [
 		'class' => 'kartik\grid\Module',

@@ -1,10 +1,10 @@
 <?php
 
 $config = [
-	'login' => '/my/user/login',
-	'logout' => '/my/user/logout',
-	'my' => '/my/user/index',
-	'my/car' => '/my/user/car',
+	'partner/login' => '/partner/user/login',
+	'partner/logout' => '/partner/user/logout',
+	'member/login' => '/member/user/login',
+	'member/logout' => '/member/user/logout',
 ];
 
 return $config;
