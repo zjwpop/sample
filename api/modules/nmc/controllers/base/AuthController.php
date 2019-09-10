@@ -6,7 +6,7 @@ use yii\filters\auth\QueryParamAuth;
 use yii\filters\ContentNegotiator;
 use yii\web\Controller;
 use yii\web\Response;
-use common\models\table\all\User;
+use common\models\table\abc\Member;
 
 class AuthController extends Controller
 {
@@ -28,8 +28,8 @@ class AuthController extends Controller
 
 		$behaviors['authenticator'] = [
 			'class' => QueryParamAuth::className(),
-			'user' => new User(),
-			'tokenParam' => 'token',
+			'user' => new Member(),
+			'tokenParam' => 'access-token',
 			'optional' => [
 				'login',
 				'signup-test',

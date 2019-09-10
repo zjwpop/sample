@@ -1,33 +1,13 @@
 <?php
 
-namespace mst\modules\cdd\controllers;
+namespace api\modules\abc\controllers;
 
-use mst\modules\cdd\controllers\base\BaseController;
-use yii\filters\VerbFilter;
+use api\modules\abc\controllers\base\BaseController;
 
 class IndexController extends BaseController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * Lists all Admin models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        exit('cdd index');
-    }
+	public function actionIndex()
+	{
+		return ['code' => 0, 'message' => 'success', 'data' => []];
+	}
 }

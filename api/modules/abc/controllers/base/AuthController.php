@@ -1,39 +1,37 @@
 <?php
-namespace mst\modules\cdd\controllers\base;
+namespace api\modules\abc\controllers\base;
 
-use Yii;
-use yii\web\Controller;
+use yii\filters\auth\QueryParamAuth;
+use yii\filters\ContentNegotiator;
+use yii\web\Response;
+use common\models\table\abc\User;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
 	public function init() {
 		parent::init();
 	}
 
-	/**
-	 * 检查权限
-	 * @author luotaipeng
-	 */
-	public function beforeAction($action) {
-		if (!parent::beforeAction($action)) {
-			return false;
-		}
+	public function behaviors()
+	{
+		$behaviors = parent::behaviors();
 
-		//return true;
+		$behaviors['contentNegotiator'] = [
+			'class' => ContentNegotiator::className(),
+			'formats' => [
+				'application/json' => Response::FORMAT_JSON,
+			],
+		];
 
-		if(Yii::$app->user->isGuest){
-			return $this->redirect(['/user/login']);
-		}
-
-		if (Yii::$app->user->id >0) {
-			return true;
-		}
-
-		$request_uri = '/'.Yii::$app->controller->route;
-		if (!Yii::$app->user->can($request_uri) && Yii::$app->getErrorHandler()->exception === null) {
-			throw new \yii\web\UnauthorizedHttpException('对不起，您现在还没获此操作的权限');
-		}
-
-		return true;
+		$behaviors['authenticator'] = [
+			'class' => QueryParamAuth::className(),
+			'user' => new User(),
+			'tokenParam' => 'token',
+			'optional' => [
+				'login',
+				'signup-test',
+			],
+		];
+		return $behaviors;
 	}
 }

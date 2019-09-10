@@ -1,5 +1,5 @@
 <?php
-namespace mst\modules\cdd\controllers\base;
+namespace api\modules\abc\controllers\base;
 
 use Yii;
 use yii\web\Controller;

@@ -8,6 +8,6 @@ class CarController extends AuthController
 {
 	public function actionIndex()
 	{
-		return ['code' => 0, 'msg' => 'success'];
+		return  ['code' => 0, 'msg' => 'success'];
 	}
 }

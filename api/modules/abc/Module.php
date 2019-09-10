@@ -1,17 +1,11 @@
 <?php
 
-namespace api\modules\cdd;
+namespace api\modules\abc;
 
 class Module extends \yii\base\Module
 {
-	/**
-	 * @inheritdoc
-	 */
-	public $controllerNamespace = 'api\modules\cdd\controllers';
+	public $controllerNamespace = 'api\modules\abc\controllers';
 
-	/**
-	 * @inheritdoc
-	 */
 	public function init()
 	{
 		parent::init();
