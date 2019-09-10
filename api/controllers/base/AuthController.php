@@ -2,21 +2,22 @@
 namespace api\controllers\base;
 
 use Yii;
-use yii\web\Controller;
 use yii\filters\ContentNegotiator;
 use yii\web\Response;
+use yii\filters\auth\QueryParamAuth;
 
-class BaseController extends Controller
+class AuthController extends BaseController
 {
-	public $enableCsrfValidation = false;
-	public function init() {
+	public function init()
+	{
 		parent::init();
+		Yii::$app->user->enableSession = false;
 	}
-
 	public function behaviors()
 	{
 
 		$behaviors=parent::behaviors();
+
 		$behaviors['contentNegotiator'] = [
 			'class' => ContentNegotiator::className(),
 			'formats' => [
@@ -24,7 +25,10 @@ class BaseController extends Controller
 			]
 		];
 
+		$behaviors['authenticator'] = [
+    		'class' => QueryParamAuth::className(),
+    		'tokenParam' => 'token'
+		];
 		return $behaviors;
 	}
 }
-
