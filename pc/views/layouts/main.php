@@ -1,22 +1,25 @@
 <?php
-use yii\helpers\Html;
+use pc\assets\AppAsset;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use pc\assets\AppAsset;
+use yii\helpers\Html;
 
 AppAsset::register($this);
+
+// $this->title = '{{title}}';
+// $this->registerMetaTag(['name' => 'keywords', 'content' => '{{keywords}}'], 'keywords');
+// $this->registerMetaTag(['name' => 'description', 'content' => '{{description}}'], 'description');
 ?>
-<?php $this->beginPage();?>
+<?php $this->beginPage(); ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-	<meta charset="<?= Yii::$app->charset ?>">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<?= Html::csrfMetaTags() ?>
-	<title><?= Html::encode($this->title) ?></title>
-	<?php $this->head() ?>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -34,11 +37,18 @@ AppAsset::register($this);
         'items' => [
             ['label' => '主页', 'url' => ['/']],
             Yii::$app->user->isGuest ? (
-                ['label' => '登录', 'url' => ['/login']]
+                ['label' => 'B端登录', 'url' => ['patner/login']]
             ) : (
-                '<li>'. Html::a(Yii::$app->user->identity->nick,['mine']) .'</li>'
-                .'<li>'.Html::a('退出',['/logout']) . '</li>'
-            )
+                '<li>'.Html::a(Yii::$app->user->identity->nick, ['partner/index/']).'</li>'
+                .'<li>'.Html::a('B退出', ['partner/logout']).'</li>'
+            ),
+
+            Yii::$app->member->isGuest ? (
+                ['label' => 'C端登录', 'url' => ['member/login']]
+            ) : (
+                '<li>'.Html::a(Yii::$app->member->identity->nick, ['member/index/']).'</li>'
+                .'<li>'.Html::a('C退出', ['member/logout']).'</li>'
+            ),
         ],
     ]);
     NavBar::end();
