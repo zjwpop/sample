@@ -1,6 +1,6 @@
 <?php
 
-namespace mst\modules\nmc\controllers;
+namespace mst\modules\abc\controllers;
 
 use mst\modules\abc\controllers\base\AuthController;
 use yii\filters\VerbFilter;
@@ -28,6 +28,6 @@ class IndexController extends AuthController
      */
     public function actionIndex()
     {
-        exit('nmc index');
+        exit('abc index');
     }
 }
