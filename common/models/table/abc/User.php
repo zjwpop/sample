@@ -1,32 +1,34 @@
 <?php
+
 namespace common\models\table\abc;
 
-use Yii;
 use common\models\base\abc\UserBase;
+use common\validator\MobileValidator;
+use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
-use yii\behaviors\TimestampBehavior;
-use common\validator\MobileValidator;
 
 class User extends UserBase implements IdentityInterface
 {
 	const STATUS_ENABLE = 1;
 	const STATUS_DISABLE = 0;
 
-    public function behaviors()
-    {
-        return [
-            [
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    self::EVENT_BEFORE_INSERT => ['create_time'],
-                    //self::EVENT_BEFORE_UPDATE => ['update_time'],
-                ],
-            ],
-        ];
-    }
+	public function behaviors()
+	{
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'attributes' => [
+					self::EVENT_BEFORE_INSERT => ['create_time', 'update_time'],
+					self::EVENT_BEFORE_UPDATE => ['update_time'],
+				],
+			],
+		];
+	}
 
-    public function rules() {
+	public function rules()
+	{
 		return array_merge(parent::rules(), [
 			['mobile', MobileValidator::className()],
 			['email', 'email'],
@@ -34,7 +36,8 @@ class User extends UserBase implements IdentityInterface
 		]);
 	}
 
-    public static function statusMap($value = -1) {
+	public static function statusMap($value = -1)
+	{
 		$map = [
 			self::STATUS_ENABLE => '启用',
 			self::STATUS_DISABLE => '禁用',
@@ -45,25 +48,29 @@ class User extends UserBase implements IdentityInterface
 		return ArrayHelper::getValue($map, $value, $value);
 	}
 
-    public static function findIdentity($id) {
+	public static function findIdentity($id)
+	{
 		return self::findOne(['id' => $id]);
 	}
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
-	public function getId() {
+	public function getId()
+	{
 		return $this->id;
 	}
 
 	/**
-	 * @inheritdoc
+	 * {@inheritdoc}
 	 */
-	public function getAuthKey() {
+	public function getAuthKey()
+	{
 		return null;
 	}
 
-	public function validateAuthKey($authKey) {
+	public function validateAuthKey($authKey)
+	{
 		return $this->getAuthKey() == $authKey;
 	}
 
@@ -73,7 +80,8 @@ class User extends UserBase implements IdentityInterface
 	 * @param $password
 	 * @return bool
 	 */
-	public function validatePassword($password) {
+	public function validatePassword($password)
+	{
 		return Yii::$app->getSecurity()->validatePassword($password, $this->password);
 	}
 
@@ -84,7 +92,8 @@ class User extends UserBase implements IdentityInterface
 	 * @return string
 	 * @throws \yii\base\Exception
 	 */
-	public function encryptPassword($password) {
+	public function encryptPassword($password)
+	{
 		return Yii::$app->getSecurity()->generatePasswordHash($password);
 	}
 
@@ -94,36 +103,40 @@ class User extends UserBase implements IdentityInterface
 	 * @param $password
 	 * @throws \yii\base\Exception
 	 */
-	public function setPassword($password) {
+	public function setPassword($password)
+	{
 		$this->password = $this->encryptPassword($password);
 	}
 
 	/////////////////////////;
 
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function findIdentityByAccessToken($token, $type = null)
+	{
+		return static::findOne(['token' => $token]);
+	}
 
+	//这个就是我们进行yii\filters\auth\QueryParamAuth调用认证的函数，下面会说到。
+	public function loginByAccessToken($token, $type)
+	{
+		return static::findIdentityByAccessToken($token, $type);
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        return static::findOne(['token' => $token]);
-    }
+	/**
+	 * Finds user by username
+	 *
+	 * @param  string      $username
+	 * @return static|null
+	 */
+	public static function findByUsername($username)
+	{
+		return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+	}
 
-    //这个就是我们进行yii\filters\auth\QueryParamAuth调用认证的函数，下面会说到。
-    public function loginByAccessToken($token, $type) {
-        return static::findIdentityByAccessToken($token, $type);
-    }
-
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-    }
-
+	public function getPartner()
+	{
+		return $this->hasOne(Partner::className(), ['id' => 'partner_id']);
+	}
 }

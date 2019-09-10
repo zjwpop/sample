@@ -8,21 +8,17 @@ use Yii;
  * This is the model class for table "abc_partner".
  *
  * @property int $id
- * @property string $username
- * @property string $mobile
- * @property string $email
- * @property string $password
- * @property string $token
- * @property string $auth_key
- * @property string $open_id
- * @property int $status
  * @property string $company
  * @property string $prefix 前缀，如nmc
- * @property string $nick
- * @property string $avatar
- * @property string $last_login_ip
- * @property int $last_login_time
+ * @property string $linker
+ * @property string $tel
+ * @property string $address
+ * @property string $post_code
+ * @property string $lng 经度
+ * @property string $lat 纬度
+ * @property int $status
  * @property int $create_time
+ * @property int $update_time
  */
 class PartnerBase extends \common\extensions\ActiveRecord
 {
@@ -40,11 +36,12 @@ class PartnerBase extends \common\extensions\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'last_login_time', 'create_time'], 'integer'],
-            [['username', 'password', 'token', 'auth_key', 'open_id', 'company', 'avatar'], 'string', 'max' => 64],
-            [['mobile', 'last_login_ip'], 'string', 'max' => 16],
-            [['email', 'nick'], 'string', 'max' => 32],
+            [['lng', 'lat'], 'number'],
+            [['status', 'create_time', 'update_time'], 'integer'],
+            [['company', 'address'], 'string', 'max' => 64],
             [['prefix'], 'string', 'max' => 8],
+            [['linker', 'tel'], 'string', 'max' => 32],
+            [['post_code'], 'string', 'max' => 16],
         ];
     }
 
@@ -55,21 +52,17 @@ class PartnerBase extends \common\extensions\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'mobile' => 'Mobile',
-            'email' => 'Email',
-            'password' => 'Password',
-            'token' => 'Token',
-            'auth_key' => 'Auth Key',
-            'open_id' => 'Open ID',
-            'status' => 'Status',
             'company' => 'Company',
             'prefix' => '前缀，如nmc',
-            'nick' => 'Nick',
-            'avatar' => 'Avatar',
-            'last_login_ip' => 'Last Login Ip',
-            'last_login_time' => 'Last Login Time',
+            'linker' => 'Linker',
+            'tel' => 'Tel',
+            'address' => 'Address',
+            'post_code' => 'Post Code',
+            'lng' => '经度',
+            'lat' => '纬度',
+            'status' => 'Status',
             'create_time' => 'Create Time',
+            'update_time' => 'Update Time',
         ];
     }
 }
