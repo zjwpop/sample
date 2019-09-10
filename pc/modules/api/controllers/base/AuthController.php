@@ -9,7 +9,6 @@ use yii\filters\auth\QueryParamAuth;
 
 class AuthController extends Controller
 {
-	public $enableCsrfValidation = false;
 	public function init()
 	{
 		parent::init();
@@ -29,7 +28,7 @@ class AuthController extends Controller
 
 		$behaviors['authenticator'] = [
     		'class' => QueryParamAuth::className(),
-    		'tokenParam' => 'b_token'
+    		'tokenParam' => 'token'
 		];
 		return $behaviors;
 	}
