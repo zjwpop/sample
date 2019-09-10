@@ -1,13 +1,13 @@
 <?php
 
 $config = [
+	'abc' => [
+		'class' => 'mst\modules\abc\Module',
+		'layout' => '@mst/views/layout/abc',
+	],
 	'nmc' => [
 		'class' => 'mst\modules\nmc\Module',
-		'layout' => '@mst/views/layout/nmc',
-	],
-	'cdd' => [
-		'class' => 'mst\modules\cdd\Module',
-		'layout' => '@mst/views/layouts/cdd',
+		'layout' => '@mst/views/layouts/abc',
 	],
 	'gridview' => [
 		'class' => 'kartik\grid\Module',

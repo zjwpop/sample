@@ -2,11 +2,11 @@
 
 namespace mst\modules\nmc\controllers;
 
-use mst\modules\nmc\controllers\base\BaseController;
+use mst\modules\abc\controllers\base\AuthController;
 use yii\filters\VerbFilter;
 use Yii;
 
-class CarController extends BaseController
+class CarController extends AuthController
 {
 	/**
 	 * {@inheritdoc}

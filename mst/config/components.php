@@ -12,7 +12,7 @@ $config = [
 		],
 	],
 	'user' => [
-		'identityClass' => 'common\models\table\all\User',
+		'identityClass' => 'common\models\table\abc\User',
 		'enableAutoLogin' => true,
 		'identityCookie' => ['name' => '_identity-mst', 'httpOnly' =>false],
 		'loginUrl' => '/user/login',

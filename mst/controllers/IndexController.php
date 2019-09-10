@@ -10,6 +10,6 @@ use yii\web\ErrorAction;
 class IndexController extends Controller
 {
 	public function actionIndex(){
-		exit('hello world.');
+		return $this->render('index');
 	}
 }
