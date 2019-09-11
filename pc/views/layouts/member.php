@@ -1,4 +1,5 @@
 <?php
+use pc\assets\AppAsset;
 use yii\helpers\Html;
 
 AppAsset::register($this);
