@@ -13,8 +13,10 @@ if (file_exists($db_local)) {
 	);
 }
 
+
 $config = [
 	'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+	'params' => $params,
 	'components' => $components,
 	'language' => 'zh-CN',
 	'timeZone' => 'Asia/Shanghai',
