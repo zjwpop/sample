@@ -10,10 +10,9 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = 'https://cdn.3661732.comm';
     public $css = [
-        'public/css/bootstrap/bootstrap.css',
-        'public/pc/site.css',
+        '/public/css/bootstrap.css',
     ];
     public $js = [
         'public/js/jquery/jquery_2.2.4.min.js',

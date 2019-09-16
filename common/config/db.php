@@ -15,6 +15,7 @@ $config = [
         'hostname' => '127.0.0.1',
         'port' => 6379,
         'database' => 6,
+        #'password' => 'rand_str'
     ],
 ];
 return $config;

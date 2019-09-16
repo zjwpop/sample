@@ -15,8 +15,8 @@ $components = array_merge(
 $modules = require(__DIR__ . '/modules.php');
 
 $config = [
-	'id' => 'admin',
-	'name' => '****公司',
+	'id' => 'pc',
+	'name' => 'company',
 	'basePath' => dirname(__DIR__),
 	'bootstrap' => ['log'],
 	'controllerNamespace' => 'pc\controllers',
