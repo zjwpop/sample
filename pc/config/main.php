@@ -1,11 +1,11 @@
 <?php
 
-$params = array_merge(
-	file_exists(__DIR__.'/../../common/config/params.php') ? require(__DIR__.'/../../common/config/params.php') : [],
-	file_exists(__DIR__.'/../../common/config/params-local.php') ? require(__DIR__.'/../../common/config/params-local.php') : [],
-	file_exists(__DIR__.'/params.php') ? require(__DIR__.'/params.php') : [],
-	file_exists(__DIR__.'/params-local.php') ? require(__DIR__.'/params-local.php') : []
-);
+$public_params =	file_exists(__DIR__.'/../../common/config/params.php') ? require(__DIR__.'/../../common/config/params.php') : [];
+$public_local_params =	file_exists(__DIR__.'/../../common/config/params-local.php') ? require(__DIR__.'/../../common/config/params-local.php') : [];
+$app_params = file_exists(__DIR__.'/params.php') ? require(__DIR__.'/params.php') : [];
+$app_local_params = file_exists(__DIR__.'/params-local.php') ? require(__DIR__.'/params-local.php') : [];
+
+$params = array_merge($public_params,$public_local_params,$app_params,$app_local_params);
 
 $components = array_merge(
 	require(__DIR__.'/components.php'),

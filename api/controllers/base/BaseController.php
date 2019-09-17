@@ -9,6 +9,7 @@ use yii\web\Response;
 class BaseController extends Controller
 {
 	public $enableCsrfValidation = false;
+
 	public function init() {
 		parent::init();
 	}
@@ -17,6 +18,7 @@ class BaseController extends Controller
 	{
 
 		$behaviors=parent::behaviors();
+
 		$behaviors['contentNegotiator'] = [
 			'class' => ContentNegotiator::className(),
 			'formats' => [

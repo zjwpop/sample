@@ -18,13 +18,6 @@ class AuthController extends BaseController
 
 		$behaviors=parent::behaviors();
 
-		$behaviors['contentNegotiator'] = [
-			'class' => ContentNegotiator::className(),
-			'formats' => [
-				'application/json' => Response::FORMAT_JSON,
-			]
-		];
-
 		$behaviors['authenticator'] = [
     		'class' => QueryParamAuth::className(),
     		'tokenParam' => 'token'
