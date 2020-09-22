@@ -7,7 +7,8 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\log\FileTarget;
 
-class Helper {
+class Helper
+{
 	public static $curl = null;
 
 	/**
@@ -17,7 +18,8 @@ class Helper {
 	 * @param $default
 	 * @return array|string
 	 */
-	public static function getParam($key, $default = null) {
+	public static function getParam($key, $default = null)
+	{
 		return ArrayHelper::getValue(Yii::$app->params, $key, $default);
 	}
 
@@ -27,7 +29,8 @@ class Helper {
 	 * @param $key
 	 * @param $value
 	 */
-	public static function setParam($key, $value) {
+	public static function setParam($key, $value)
+	{
 		Yii::$app->params[$key] = $value;
 	}
 
@@ -38,7 +41,8 @@ class Helper {
 	 * @return mixed|null
 	 * @author luotaipeng
 	 */
-	public static function redis_get($key, $default = null) {
+	public static function redis_get($key, $default = null)
+	{
 		/** @var \yii\redis\Connection $redis */
 		$redis = Yii::$app->get('redis');
 		$prefix = self::getParam('redis_key_prefix');
@@ -67,7 +71,8 @@ class Helper {
 	 * @param $expire
 	 * @return bool
 	 */
-	public static function redis_set($key, $value, $expire = null) {
+	public static function redis_set($key, $value, $expire = null)
+	{
 		/** @var \yii\redis\Connection $redis */
 		$redis = Yii::$app->get('redis');
 		if (is_null($expire)) {
@@ -96,7 +101,8 @@ class Helper {
 	 * @param $key
 	 * @return bool
 	 */
-	public static function redis_del($key) {
+	public static function redis_del($key)
+	{
 		/** @var \yii\redis\Connection $redis */
 		$redis = Yii::$app->get('redis');
 		$prefix = self::getParam('redis_key_prefix');
@@ -110,11 +116,12 @@ class Helper {
 	 * 写日志文件
 	 * @author luotaipeng
 	 * @param $content
-	 * @param  string $logName
+	 * @param  string                           $logName
 	 * @throws \yii\base\InvalidConfigException
 	 * @throws \yii\log\LogRuntimeException
 	 */
-	public static function fLogs($content, $logName = 'log.log') {
+	public static function fLogs($content, $logName = 'log.log')
+	{
 		$time = microtime(true);
 		$log = new FileTarget();
 		$log->logFile = Yii::$app->getRuntimePath().'/logs/'.$logName;
@@ -128,7 +135,8 @@ class Helper {
 	 * @param $key
 	 * @param $value
 	 */
-	public static function set_seo_var($key, $value) {
+	public static function set_seo_var($key, $value)
+	{
 		ArrayHelper::setValue(Yii::$app->params, 'seo_vars.'.$key, $value);
 	}
 
@@ -136,7 +144,8 @@ class Helper {
 	 * 更新当前页面SEO信息
 	 * @author luotaipeng
 	 */
-	public static function set_seo_info() {
+	public static function set_seo_info()
+	{
 		$result = [
 			'errno' => 0,
 			'errmsg' => '',
@@ -225,7 +234,8 @@ class Helper {
 	 * @param $value
 	 * @return string|array
 	 */
-	public static function unifyLimiter($value) {
+	public static function unifyLimiter($value)
+	{
 		return str_replace([' ', '　', '，', '、', "\n"], ',', $value);
 	}
 
@@ -233,7 +243,8 @@ class Helper {
 	 * 设置输出内容格式为json
 	 * @author luotaipeng
 	 */
-	public static function json_output($data = null, $exit = true) {
+	public static function json_output($data = null, $exit = true)
+	{
 		if (!$data) {
 			Yii::$app->response->format = 'json';
 			return;
@@ -251,7 +262,8 @@ class Helper {
 	 * @return array|string|object
 	 * @author luotaipeng
 	 */
-	public static function curl($url, $data = [], $method = 'get', $params = [], $debug = false) {
+	public static function curl($url, $data = [], $method = 'get', $params = [], $debug = false)
+	{
 		if (!self::$curl) {
 			self::$curl = curl_init();
 		}
@@ -330,7 +342,8 @@ class Helper {
 	 * 设置Header CORS
 	 * @author luotaipeng
 	 */
-	public static function set_cors() {
+	public static function set_cors()
+	{
 		$headers = Yii::$app->response->headers;
 		$headers->set('Access-Control-Allow-Origin', 'http://www.chedidi.com');
 		$headers->set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie');
@@ -376,7 +389,8 @@ class Helper {
 	 * @return string
 	 * @author luotaipeng
 	 */
-	public function sign($data, $secret, $ignore_keys = ['sign']) {
+	public function sign($data, $secret, $ignore_keys = ['sign'])
+	{
 		foreach ($ignore_keys as $key) {
 			if (isset($data[$key])) {
 				unset($data[$key]);
@@ -398,7 +412,8 @@ class Helper {
 	 * @return string
 	 * @author luotaipeng
 	 */
-	public function gen_order_no($mch_id = null, $prefix = null, $suffix = null) {
+	public function gen_order_no($mch_id = null, $prefix = null, $suffix = null)
+	{
 		if (!$mch_id) {
 			require_once Yii::getAlias('@common/WxPay/lib/WxPay.Api.php');
 			$mch_id = \WxPayConfig::MCHID;
@@ -412,7 +427,8 @@ class Helper {
 	 * @return bool
 	 * @author luotaipeng
 	 */
-	public static function is_wx_client() {
+	public static function is_wx_client()
+	{
 		// Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 wechatdevtools/0.7.0 MicroMessenger/6.3.9 Language/zh_CN webview/0
 		if (isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger/')) {
 			return true;
@@ -424,7 +440,8 @@ class Helper {
 	 * 获取随机名称
 	 * @author luotaipeng
 	 */
-	public static function getRandName($last_name = [], $suffix = '团友') {
+	public static function getRandName($last_name = [], $suffix = '团友')
+	{
 		if (!$last_name) {
 			$last_name = '
 				赵 钱 孙 李 周 吴 郑 王 冯 陈 褚 卫
@@ -448,7 +465,8 @@ class Helper {
 	 * 获取随机时间
 	 * @author luotaipeng
 	 */
-	public static function getRandTime($last_minute = null, $start_date = null, $end_date = null, $start_hour = 8, $end_hour = 22) {
+	public static function getRandTime($last_minute = null, $start_date = null, $end_date = null, $start_hour = 8, $end_hour = 22)
+	{
 		$hour = rand($start_hour, $end_hour);
 		if (!$start_date) {
 			$start_date = strtotime(date('Y-m-d').' -3day');
@@ -476,7 +494,8 @@ class Helper {
 	 * 获取隐藏四位电话号码
 	 * @author luotaipeng
 	 */
-	public static function getMaskMobile($mobile = null) {
+	public static function getMaskMobile($mobile = null)
+	{
 		if ($mobile) {
 			return substr($mobile, 0, 3).'****'.substr($mobile, -2);
 		}
@@ -484,7 +503,8 @@ class Helper {
 		return $prefix_list[array_rand($prefix_list)].'******'.rand(10, 99);
 	}
 
-	public static function maskMobile($mobile) {
+	public static function maskMobile($mobile)
+	{
 		if (empty($mobile)) {
 			return '';
 		}
@@ -492,5 +512,21 @@ class Helper {
 			return $mobile;
 		}
 		return substr($mobile, 0, 3).'****'.substr($mobile, -4);
+	}
+
+	public static function randString($len = 8, $level = 1)
+	{
+		$strs = [
+			'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			'abcdefghijk0123456789lmnopqrstuvwxyz68920ABCDEFGHIJKLMN0123456789OPQRSTUVWXYZ',
+			'abcdefghijk0123456789lmnopqr@#$%?&*_+-stuvwxyz68920ABCDEFGHIJK@#$%?&*_+-LMN0123456789OPQRSTUVWXYZ',
+		];
+		$str = ArrayHelper::getValue($strs, $level, $strs[1]);
+		$l = strlen($str) - 1;
+		$rand_str = '';
+		for ($i = 0; $i < $len; $i++) {
+			$rand_str .= $str[mt_rand(0, $l)];
+		}
+		return $rand_str;
 	}
 }
